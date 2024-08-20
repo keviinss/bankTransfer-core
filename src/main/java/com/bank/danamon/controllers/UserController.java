@@ -2,6 +2,7 @@ package com.bank.danamon.controllers;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
@@ -14,14 +15,14 @@ import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.bank.danamon.helpers.ResponseJson;
+import com.bank.danamon.models.AccountModel;
 import com.bank.danamon.models.UserModel;
 import com.bank.danamon.request.SearchPayload;
 import com.bank.danamon.request.UserPayload;
+import com.bank.danamon.services.AccountService;
 import com.bank.danamon.services.UserService;
 
 @CrossOrigin()
@@ -31,6 +32,9 @@ public class UserController {
     @Autowired
     UserService userService;
 
+    @Autowired
+    AccountService accountService;
+
     @PostMapping("/user/create")
     public ResponseEntity<Object> create(@Valid @RequestBody UserPayload payload, Errors errors,
             HttpServletRequest httpRequest) {
@@ -39,7 +43,7 @@ public class UserController {
         response.setStatus_code(httpstatus.value());
 
         if (errors.hasErrors()) {
-            List<String> messages = new ArrayList<String>();
+            List<String> messages = new ArrayList<>();
             for (ObjectError error : errors.getAllErrors()) {
                 messages.add(error.getDefaultMessage());
             }
@@ -48,8 +52,12 @@ public class UserController {
 
             UserModel email = userService.findByEmail(payload.getEmail());
             UserModel phone = userService.findByPhone(payload.getPhone_number());
+
             if (phone == null) {
                 if (email == null) {
+
+                    Random rand = new Random();
+                    int randomNum = rand.nextInt(99999999);
 
                     UserModel user = new UserModel();
                     user.setFirst_name(payload.getFirst_name());
@@ -58,10 +66,19 @@ public class UserController {
                     user.setPhone_number(payload.getPhone_number());
                     user.setAddress(payload.getAddress());
                     user.setDate_of_birth(payload.getDate_of_birth());
+                    user.setGender(payload.getGender());
 
                     httpstatus = HttpStatus.OK;
                     response.setStatus_code(httpstatus.value());
                     response.setData(userService.save(user));
+
+                    String aacount_id = user.getUser_id();
+
+                    AccountModel account = new AccountModel();
+                    account.setUser_id(aacount_id);
+                    account.setAccount_type(payload.getAccount().getAccount_type());
+                    account.setAccount_number(randomNum);
+                    accountService.save(account);
                 } else {
                     response.setMessages("email_address_already_exists");
                 }
@@ -82,7 +99,7 @@ public class UserController {
 
         String userId = payload.getUser_id();
         if (errors.hasErrors()) {
-            List<String> messages = new ArrayList<String>();
+            List<String> messages = new ArrayList<>();
             for (ObjectError error : errors.getAllErrors()) {
                 messages.add(error.getDefaultMessage());
             }
@@ -101,6 +118,7 @@ public class UserController {
                         user.setPhone_number(payload.getPhone_number());
                         user.setAddress(payload.getAddress());
                         user.setDate_of_birth(payload.getDate_of_birth());
+                        user.setGender(payload.getGender());
 
                         httpstatus = HttpStatus.OK;
                         response.setStatus_code(httpstatus.value());
@@ -165,13 +183,18 @@ public class UserController {
         HttpStatus httpstatus = HttpStatus.BAD_REQUEST;
         response.setStatus_code(httpstatus.value());
 
-        String user_id = payload.getUser_id();
-        if (user_id != null && !user_id.isEmpty()) {
+        String uid = payload.getUser_id();
+        if (uid != null && !uid.isEmpty()) {
 
-            UserModel user = userService.findOne(user_id);
+            UserModel user = userService.findOne(uid);
+
             if (user != null) {
 
                 user.setIs_deleted(true);
+
+                AccountModel account = accountService.findByUserId(uid);
+                account.setIs_deleted(true);
+                accountService.save(account);
 
                 httpstatus = HttpStatus.OK;
                 response.setStatus_code(httpstatus.value());

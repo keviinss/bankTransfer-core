@@ -53,7 +53,7 @@ public class UserService {
 
     public List<UserModel> findAll() {
         List<UserModel> aList = userRepository.findAll();
-        if (aList.size() == 0) {
+        if (aList.isEmpty()) {
             aList = null;
         }
         return aList;

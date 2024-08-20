@@ -1,5 +1,7 @@
 package com.bank.danamon.request;
 
+import java.sql.Date;
+
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
@@ -39,6 +41,11 @@ public class UserPayload {
     private String address;
 
     @NotNull(message = "date_of_birth_is_required")
-    private String date_of_birth;
+    private Date date_of_birth;
+
+    @NotNull(message = "gender_is_required")
+    private String gender;
+
+    private AccountPayload account;
 
 }

@@ -61,9 +61,14 @@ public class UserModel implements Serializable {
     @Column(name = "address")
     private String address;
 
+    @JsonFormat(pattern = "yyyy-MM-dd")
     @NotNull(message = "date_of_birth_is_required")
     @Column(name = "date_of_birth")
-    private String date_of_birth;
+    private Date date_of_birth;
+
+    @NotNull(message = "gender_is_required")
+    @Column(name = "gender", length = 15)
+    private String gender;
 
     @Column(name = "created_at", updatable = false)
     @CreationTimestamp
@@ -84,7 +89,8 @@ public class UserModel implements Serializable {
             @NotEmpty(message = "email_is_required") String email,
             @NotEmpty(message = "phone_number_is_required") String phone_number,
             @NotEmpty(message = "address_is_required") String address,
-            @NotNull(message = "date_of_birth_is_required") String date_of_birth, Date created_at, Date updated_at,
+            @NotNull(message = "date_of_birth_is_required") Date date_of_birth,
+            @NotNull(message = "gender_is_required") String gender, Date created_at, Date updated_at,
             Boolean is_deleted) {
         this.user_id = user_id;
         this.first_name = first_name;
@@ -93,6 +99,7 @@ public class UserModel implements Serializable {
         this.phone_number = phone_number;
         this.address = address;
         this.date_of_birth = date_of_birth;
+        this.gender = gender;
         this.created_at = created_at;
         this.updated_at = updated_at;
         this.is_deleted = is_deleted;

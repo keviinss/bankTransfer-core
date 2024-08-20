@@ -14,6 +14,7 @@ import com.bank.danamon.models.UserModel;
 
 public interface UserRepository extends JpaRepository<UserModel, String> {
 
+    @Override
     @Query("SELECT a FROM UserModel a WHERE a.is_deleted = false")
     List<UserModel> findAll();
 
