@@ -44,7 +44,7 @@ public class AccountModel implements Serializable {
     @Column(name = "account_number")
     private Integer account_number;
 
-    // @NotEmpty(message = "account_type_is_required")
+    @NotEmpty(message = "account_type_is_required")
     @Column(name = "account_type", length = 10)
     private String account_type;
 
@@ -68,8 +68,8 @@ public class AccountModel implements Serializable {
     @Column(name = "is_deleted")
     private Boolean is_deleted = false;
 
-    public AccountModel(String account_id, String user_id, Integer account_number,
-            @NotEmpty(message = "account_type_is_required") String account_type, Integer balance, String currency,
+    public AccountModel(String account_id, String user_id,
+            Integer account_number, @NotEmpty(message = "account_type_is_required") String account_type, Integer balance, String currency,
             Date created_at, Date updated_at, Boolean is_deleted) {
         this.account_id = account_id;
         this.user_id = user_id;

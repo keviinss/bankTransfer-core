@@ -22,6 +22,8 @@ public class AccountPayload {
 
     private String account_id;
 
+    private String user_id;
+
     @NotEmpty(message = "account_type_is_required")
     private String account_type;
 

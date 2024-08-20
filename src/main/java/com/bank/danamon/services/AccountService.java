@@ -38,6 +38,14 @@ public class AccountService {
         return accountModel.get();
     }
 
+    public AccountModel findByAccountNumber(Integer account_number) {
+        Optional<AccountModel> accountModel = accountRepository.findByAccountNumber(account_number);
+        if (!accountModel.isPresent()) {
+            return null;
+        }
+        return accountModel.get();
+    }
+
     public AccountModel softDelete(AccountModel accountModel) {
         accountRepository.save(accountModel);
         return accountModel;
