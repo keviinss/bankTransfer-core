@@ -48,32 +48,32 @@ public class TransferController {
             response.setMessages(String.join(", ", messages));
         } else {
 
-            TransferModel sender = transferService.findBySenderId(payload.getSender_account_id());
-            TransferModel receive = transferService.findByReceiverId(payload.getReceiver_account_id());
+            AccountModel sender = accountService.findOne(payload.getSender_account_id());
+            AccountModel receiver = accountService.findOne(payload.getReceiver_account_id());
 
-            AccountModel accountByUser = accountService.findOne(payload.getAccountPayload().getAccount_id());
+            if (sender != null) {
+                if (receiver != null) {
+                    AccountModel account = new AccountModel();
 
-            if (accountByUser == null) {
-                AccountModel account = new AccountModel();
+                    TransferModel transfer = new TransferModel();
+                    transfer.setSender_account_id(payload.getSender_account_id());
+                    transfer.setReceiver_account_id(payload.getReceiver_account_id());
+                    transfer.setAmount(payload.getAmount());
 
-                TransferModel transfer = new TransferModel();
-                transfer.setSender_account_id(payload.getSender_account_id());
-                transfer.setReceiver_account_id(payload.getReceiver_account_id());
-                transfer.setAmount(payload.getAmount());
+                    httpstatus = HttpStatus.OK;
+                    response.setStatus_code(httpstatus.value());
+                    response.setData(transferService.save(transfer));
 
-                Integer addBalance = transfer.getAmount() + account.getBalance();
-                // Integer reductionBalance = Integer.valueOf(account.getAccount_id()) - transfer.getAmount();
-                Integer reductionBalance = account.getBalance() - transfer.getAmount();
-
-                account.setBalance(addBalance);
-                // account.setAccount_id(reductionBalance);
-
-                httpstatus = HttpStatus.OK;
-                response.setStatus_code(httpstatus.value());
-                response.setData(transferService.save(transfer));
+                    // Integer addBalance = transfer.getAmount() + account.getBalance();
+                    // Integer reductionBalance = Integer.valueOf(account.getAccount_id()) - transfer.getAmount();
+                    // Integer reductionBalance = account.getBalance() - transfer.getAmount();
+                    // account.setBalance(addBalance);
+                    // account.setAccount_id(reductionBalance);
+                } else {
+                    response.setMessages("receiver_id_not_exist");
+                }
             } else {
-                response.setMessages("account_sender_not_exist");
-
+                response.setMessages("sender_id_not_exist");
             }
 
         }
