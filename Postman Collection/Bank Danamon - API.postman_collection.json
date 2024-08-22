@@ -1,0 +1,1371 @@
+{
+	"info": {
+		"_postman_id": "95f1ae65-ace0-45c2-9bb0-9f87959b76e8",
+		"name": "Bank Danamon - API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19597868"
+	},
+	"item": [
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Create",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"first_name\": \"Kevin\",\r\n    \"last_name\": \"Setiawan\",\r\n    \"email\": \"kevinsetiawann@gmail.com\",\r\n    \"phone_number\": \"088233890990\",\r\n    \"address\": \"Jakarta\",\r\n    \"date_of_birth\": \"1999-09-15\",\r\n    \"gender\": \"MALE\",\r\n    \"account\": {\r\n        \"account_type\": \"LITE\" //LITE / LITEPLUS / REGULER\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_BASE}}/user/create",
+							"host": [
+								"{{API_BASE}}"
+							],
+							"path": [
+								"user",
+								"create"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"first_name\": \"Kevin\",\r\n    \"last_name\": \"Setiawan\",\r\n    \"email\": \"kevinsetiawann@gmail.com\",\r\n    \"phone_number\": \"088233890990\",\r\n    \"address\": \"Jakarta\",\r\n    \"date_of_birth\": \"1999-09-15\",\r\n    \"gender\": \"MALE\",\r\n    \"account\": {\r\n        \"account_type\": \"LITE\" //LITE / LITEPLUS / REGULER\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_BASE}}/user/create",
+									"host": [
+										"{{API_BASE}}"
+									],
+									"path": [
+										"user",
+										"create"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 20 Aug 2024 20:17:21 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status_code\": 200,\n    \"messages\": \"Success\",\n    \"data\": {\n        \"user_id\": \"73967d0f-3e64-4581-9148-4e2aa86661be\",\n        \"email\": \"kevinsetiawann@gmail.com\",\n        \"phone_number\": \"088233890990\",\n        \"address\": \"Jakarta\",\n        \"date_of_birth\": \"1999-09-15\",\n        \"gender\": \"MALE\",\n        \"created_at\": \"2024-08-21 03:17:21\",\n        \"updated_at\": \"2024-08-21 03:17:21\"\n    }\n}"
+						},
+						{
+							"name": "Failed",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"first_name\": \"Kevin\",\r\n    \"last_name\": \"Setiawan\",\r\n    \"email\": \"kevinsetiawann@gmail.com\",\r\n    \"phone_number\": \"088233890990\",\r\n    \"address\": \"Jakarta\",\r\n    \"date_of_birth\": \"1999-09-15\",\r\n    \"gender\": \"MALE\",\r\n    \"account\": {\r\n        \"account_type\": \"LITE\" //LITE / LITEPLUS / REGULER\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_BASE}}/user/create",
+									"host": [
+										"{{API_BASE}}"
+									],
+									"path": [
+										"user",
+										"create"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 20 Aug 2024 20:18:14 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status_code\": 400,\n    \"messages\": \"phone_already_exists\",\n    \"data\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "Update",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"user_id\" : \"3aadcd7a-b516-4c1f-b102-30d227a57650\",\r\n    \"first_name\" : \"Kevin S\",\r\n    \"last_name\" : \"Setiawanan\",\r\n    \"email\" : \"kevinsetiawan10@gmail.com\",\r\n    \"phone_number\" : \"088233890999\",\r\n    \"address\" : \"Jakarta Selatan\",\r\n    \"date_of_birth\" : \"15-09-1998\",\r\n    \"gender\" : \"MALE\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_BASE}}/user/update",
+							"host": [
+								"{{API_BASE}}"
+							],
+							"path": [
+								"user",
+								"update"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"user_id\" : \"3aadcd7a-b516-4c1f-b102-30d227a57650\",\r\n    \"first_name\" : \"Kevin S\",\r\n    \"last_name\" : \"Setiawanan\",\r\n    \"email\" : \"kevinsetiawan10@gmail.com\",\r\n    \"phone_number\" : \"088233890999\",\r\n    \"address\" : \"Jakarta Selatan\",\r\n    \"date_of_birth\" : \"15-09-1998\",\r\n    \"gender\" : \"MALE\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_BASE}}/user/update",
+									"host": [
+										"{{API_BASE}}"
+									],
+									"path": [
+										"user",
+										"update"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 20 Aug 2024 08:02:38 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status_code\": 200,\n    \"messages\": \"Success\",\n    \"data\": {\n        \"user_id\": \"3aadcd7a-b516-4c1f-b102-30d227a57650\",\n        \"email\": \"kevinsetiawan10@gmail.com\",\n        \"phone_number\": \"088233890999\",\n        \"address\": \"Jakarta Selatan\",\n        \"date_of_birth\": \"15-09-1998\",\n        \"created_at\": \"2024-08-20 14:59:14\",\n        \"updated_at\": \"2024-08-20 15:02:38\"\n    }\n}"
+						},
+						{
+							"name": "Failed",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"user_id\" : \"3aadcd7a-b516-4c1f-b102-30d227a57650\",\r\n    \"first_name\" : \"Kevin S\",\r\n    \"last_name\" : \"Setiawanan\",\r\n    \"email\" : \"kevinsetiawan10@gmail.com\",\r\n    \"phone_number\" : \"088233890999\",\r\n    \"address\" : \"Jakarta Selatan\",\r\n    \"date_of_birth\" : \"15-09-1998\",\r\n    \"gender\" : \"MALE\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_BASE}}/user/update",
+									"host": [
+										"{{API_BASE}}"
+									],
+									"path": [
+										"user",
+										"update"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 20 Aug 2024 08:03:05 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status_code\": 400,\n    \"messages\": \"phone_already_exists\",\n    \"data\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "Get By Id",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"user_id\" : \"3aadcd7a-b516-4c1f-b102-30d227a57650\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_BASE}}/user/getById",
+							"host": [
+								"{{API_BASE}}"
+							],
+							"path": [
+								"user",
+								"getById"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"user_id\" : \"3aadcd7a-b516-4c1f-b102-30d227a57650\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_BASE}}/user/getById",
+									"host": [
+										"{{API_BASE}}"
+									],
+									"path": [
+										"user",
+										"getById"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 20 Aug 2024 08:09:46 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status_code\": 200,\n    \"messages\": \"Success\",\n    \"data\": {\n        \"user_id\": \"3aadcd7a-b516-4c1f-b102-30d227a57650\",\n        \"email\": \"kevinsetiawan10@gmail.com\",\n        \"phone_number\": \"088233890999\",\n        \"address\": \"Jakarta Selatan\",\n        \"date_of_birth\": \"15-09-1998\",\n        \"created_at\": \"2024-08-20 14:59:14\",\n        \"updated_at\": \"2024-08-20 15:02:38\"\n    }\n}"
+						},
+						{
+							"name": "Failed",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"user_id\" : \"84a12c43-bdd9-4fd5-aeb4-df2227b00c69\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_BASE}}/user/getById",
+									"host": [
+										"{{API_BASE}}"
+									],
+									"path": [
+										"user",
+										"getById"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 20 Aug 2024 08:09:01 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status_code\": 400,\n    \"messages\": \"data_not_exist\",\n    \"data\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "Get All",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_BASE}}/user/getAll",
+							"host": [
+								"{{API_BASE}}"
+							],
+							"path": [
+								"user",
+								"getAll"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_BASE}}/user/getAll",
+									"host": [
+										"{{API_BASE}}"
+									],
+									"path": [
+										"user",
+										"getAll"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 20 Aug 2024 09:09:40 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status_code\": 200,\n    \"messages\": \"Success\",\n    \"data\": [\n        {\n            \"user_id\": \"3aadcd7a-b516-4c1f-b102-30d227a57650\",\n            \"email\": \"kevinsetiawan10@gmail.com\",\n            \"phone_number\": \"088233890999\",\n            \"address\": \"Jakarta Selatan\",\n            \"date_of_birth\": \"15-09-1998\",\n            \"created_at\": \"2024-08-20 14:59:14\",\n            \"updated_at\": \"2024-08-20 15:02:38\"\n        },\n        {\n            \"user_id\": \"807c78b2-2cc3-46a4-984c-7562f71f66f0\",\n            \"email\": \"naufalape10@gmail.com\",\n            \"phone_number\": \"087654220909\",\n            \"address\": \"Lampung\",\n            \"date_of_birth\": \"01-12-1998\",\n            \"created_at\": \"2024-08-20 16:09:06\",\n            \"updated_at\": \"2024-08-20 16:09:06\"\n        },\n        {\n            \"user_id\": \"39fa2a59-5186-4edb-b966-1e38df2367fd\",\n            \"email\": \"dendiherdian20@gmail.com\",\n            \"phone_number\": \"088233890990\",\n            \"address\": \"Bandung\",\n            \"date_of_birth\": \"10-05-2000\",\n            \"created_at\": \"2024-08-20 16:08:17\",\n            \"updated_at\": \"2024-08-20 16:08:17\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "username",
+								"value": "SYSTEM",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"user_id\": \"39fa2a59-5186-4edb-b966-1e38df2367fd\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_BASE}}/user/delete",
+							"host": [
+								"{{API_BASE}}"
+							],
+							"path": [
+								"user",
+								"delete"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "username",
+										"value": "SYSTEM",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"user_id\": \"39fa2a59-5186-4edb-b966-1e38df2367fd\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_BASE}}/user/delete",
+									"host": [
+										"{{API_BASE}}"
+									],
+									"path": [
+										"user",
+										"delete"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 20 Aug 2024 16:29:58 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status_code\": 200,\n    \"messages\": \"data_has_been_deleted\",\n    \"data\": {\n        \"user_id\": \"39fa2a59-5186-4edb-b966-1e38df2367fd\",\n        \"email\": \"dendiherdian20@gmail.com\",\n        \"phone_number\": \"088233890990\",\n        \"address\": \"Bandung\",\n        \"date_of_birth\": \"10-05-2000\",\n        \"created_at\": \"2024-08-20 16:08:17\",\n        \"updated_at\": \"2024-08-20 23:29:58\"\n    }\n}"
+						},
+						{
+							"name": "Failed",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "username",
+										"value": "SYSTEM",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"user_id\": \"39fa2a59-5186-4edb-b966-1e38df2367fd\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_BASE}}/user/delete",
+									"host": [
+										"{{API_BASE}}"
+									],
+									"path": [
+										"user",
+										"delete"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 20 Aug 2024 16:30:37 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status_code\": 400,\n    \"messages\": \"data_not_exist\",\n    \"data\": null\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Account",
+			"item": [
+				{
+					"name": "Update",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"account_id\" : \"0a067530-349c-44c5-a7f4-092c8e38ccee\",\r\n    \"account_type\" : \"LITEPLUS\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_BASE}}/account/upgradeAccount",
+							"host": [
+								"{{API_BASE}}"
+							],
+							"path": [
+								"account",
+								"upgradeAccount"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"account_id\" : \"0a067530-349c-44c5-a7f4-092c8e38ccee\",\r\n    \"account_type\" : \"LITEPLUS\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_BASE}}/account/upgradeAccount",
+									"host": [
+										"{{API_BASE}}"
+									],
+									"path": [
+										"account",
+										"upgradeAccount"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 20 Aug 2024 21:43:15 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status_code\": 200,\n    \"messages\": \"Success\",\n    \"data\": {\n        \"account_id\": \"0a067530-349c-44c5-a7f4-092c8e38ccee\",\n        \"user_id\": \"73967d0f-3e64-4581-9148-4e2aa86661be\",\n        \"account_number\": 45841737,\n        \"account_type\": \"LITEPLUS\",\n        \"balance\": 500000,\n        \"currency\": \"IDR\",\n        \"created_at\": \"2024-08-21 03:17:21\",\n        \"updated_at\": \"2024-08-21 04:42:30\"\n    }\n}"
+						},
+						{
+							"name": "Failed",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"account_id\" : \"0a067530-349c-44c5-a7f4-092c8e38cceea\",\r\n    \"account_type\" : \"LITEPLUS\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_BASE}}/account/upgradeAccount",
+									"host": [
+										"{{API_BASE}}"
+									],
+									"path": [
+										"account",
+										"upgradeAccount"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 20 Aug 2024 21:53:54 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status_code\": 400,\n    \"messages\": \"data_not_exist\",\n    \"data\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "Inquiry",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"account_id\" : \"0a067530-349c-44c5-a7f4-092c8e38ccee\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_BASE}}/account/inquiry",
+							"host": [
+								"{{API_BASE}}"
+							],
+							"path": [
+								"account",
+								"inquiry"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"account_id\" : \"0a067530-349c-44c5-a7f4-092c8e38ccee\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_BASE}}/account/inquiry",
+									"host": [
+										"{{API_BASE}}"
+									],
+									"path": [
+										"account",
+										"inquiry"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 20 Aug 2024 21:51:47 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status_code\": 200,\n    \"messages\": \"Success\",\n    \"data\": {\n        \"account_id\": \"0a067530-349c-44c5-a7f4-092c8e38ccee\",\n        \"user_id\": \"73967d0f-3e64-4581-9148-4e2aa86661be\",\n        \"account_number\": 45841737,\n        \"account_type\": \"LITEPLUS\",\n        \"balance\": 500000,\n        \"currency\": \"IDR\",\n        \"created_at\": \"2024-08-21 03:17:21\",\n        \"updated_at\": \"2024-08-21 04:42:30\"\n    }\n}"
+						},
+						{
+							"name": "Failed",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"account_id\" : \"0a067530-349c-44c5-a7f4-092c8e38cceea\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_BASE}}/account/inquiry",
+									"host": [
+										"{{API_BASE}}"
+									],
+									"path": [
+										"account",
+										"inquiry"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 20 Aug 2024 21:53:36 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status_code\": 400,\n    \"messages\": \"data_not_exist\",\n    \"data\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "Get All",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_BASE}}/user/getAll",
+							"host": [
+								"{{API_BASE}}"
+							],
+							"path": [
+								"user",
+								"getAll"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_BASE}}/user/getAll",
+									"host": [
+										"{{API_BASE}}"
+									],
+									"path": [
+										"user",
+										"getAll"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 20 Aug 2024 21:52:08 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status_code\": 200,\n    \"messages\": \"Success\",\n    \"data\": [\n        {\n            \"user_id\": \"90491fe1-b4e4-40ae-9d1b-9e52de064a47\",\n            \"email\": \"dndiherdi@gmail.com\",\n            \"phone_number\": \"089765330998\",\n            \"address\": \"Bandung\",\n            \"date_of_birth\": \"1997-07-11\",\n            \"gender\": \"MALE\",\n            \"created_at\": \"2024-08-21 03:20:22\",\n            \"updated_at\": \"2024-08-21 03:20:22\"\n        },\n        {\n            \"user_id\": \"2220810d-b1df-4ebe-97b5-927fd7d1e6fe\",\n            \"email\": \"naufalape@gmail.com\",\n            \"phone_number\": \"085320990897\",\n            \"address\": \"Lampung\",\n            \"date_of_birth\": \"1995-03-10\",\n            \"gender\": \"MALE\",\n            \"created_at\": \"2024-08-21 03:20:58\",\n            \"updated_at\": \"2024-08-21 03:20:58\"\n        },\n        {\n            \"user_id\": \"73967d0f-3e64-4581-9148-4e2aa86661be\",\n            \"email\": \"kevinsetiawann@gmail.com\",\n            \"phone_number\": \"088233890990\",\n            \"address\": \"Jakarta\",\n            \"date_of_birth\": \"1999-09-14\",\n            \"gender\": \"MALE\",\n            \"created_at\": \"2024-08-21 03:17:21\",\n            \"updated_at\": \"2024-08-21 04:11:12\"\n        }\n    ]\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Transfer",
+			"item": [
+				{
+					"name": "Create",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"sender_account_id\": \"0a067530-349c-44c5-a7f4-092c8e38ccee\",\r\n    \"receiver_account_id\": \"43a08793-621b-43f8-982f-9b788c52ad9b\",\r\n    \"amount\": 100000\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_BASE}}/transfer/create",
+							"host": [
+								"{{API_BASE}}"
+							],
+							"path": [
+								"transfer",
+								"create"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"first_name\": \"Kevin\",\r\n    \"last_name\": \"Setiawan\",\r\n    \"email\": \"kevinsetiawann@gmail.com\",\r\n    \"phone_number\": \"088233890990\",\r\n    \"address\": \"Jakarta\",\r\n    \"date_of_birth\": \"1999-09-15\",\r\n    \"gender\": \"MALE\",\r\n    \"account\": {\r\n        \"account_type\": \"LITE\" //LITE / LITEPLUS / REGULER\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_BASE}}/user/create",
+									"host": [
+										"{{API_BASE}}"
+									],
+									"path": [
+										"user",
+										"create"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 20 Aug 2024 20:17:21 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status_code\": 200,\n    \"messages\": \"Success\",\n    \"data\": {\n        \"user_id\": \"73967d0f-3e64-4581-9148-4e2aa86661be\",\n        \"email\": \"kevinsetiawann@gmail.com\",\n        \"phone_number\": \"088233890990\",\n        \"address\": \"Jakarta\",\n        \"date_of_birth\": \"1999-09-15\",\n        \"gender\": \"MALE\",\n        \"created_at\": \"2024-08-21 03:17:21\",\n        \"updated_at\": \"2024-08-21 03:17:21\"\n    }\n}"
+						},
+						{
+							"name": "Failed",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"first_name\": \"Kevin\",\r\n    \"last_name\": \"Setiawan\",\r\n    \"email\": \"kevinsetiawann@gmail.com\",\r\n    \"phone_number\": \"088233890990\",\r\n    \"address\": \"Jakarta\",\r\n    \"date_of_birth\": \"1999-09-15\",\r\n    \"gender\": \"MALE\",\r\n    \"account\": {\r\n        \"account_type\": \"LITE\" //LITE / LITEPLUS / REGULER\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_BASE}}/user/create",
+									"host": [
+										"{{API_BASE}}"
+									],
+									"path": [
+										"user",
+										"create"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 20 Aug 2024 20:18:14 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status_code\": 400,\n    \"messages\": \"phone_already_exists\",\n    \"data\": null\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Transfer Limit",
+			"item": []
+		},
+		{
+			"name": "Transfer Fee",
+			"item": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "API_BASE",
+			"value": "localhost:8080",
+			"type": "string"
+		}
+	]
+}
