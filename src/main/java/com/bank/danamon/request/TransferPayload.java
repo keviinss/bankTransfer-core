@@ -1,6 +1,7 @@
 package com.bank.danamon.request;
 
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -18,17 +19,19 @@ import lombok.experimental.Accessors;
 @ToString
 @JsonInclude(value = JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class AccountPayload {
+public class TransferPayload {
 
-    private String account_id;
+    private String transfer_id;
 
-    private String user_id;
+    @NotEmpty(message = "sender_account_is_required")
+    private String sender_account_id;
 
-    @NotEmpty(message = "account_type_is_required")
-    private String account_type;
+    @NotEmpty(message = "receiver_account_is_required")
+    private String receiver_account_id;
 
-    private Integer account_number;
+    @NotNull(message = "amount_is_required")
+    private Integer amount;
 
-    private Integer balance;
+    private AccountPayload accountPayload;
 
 }
