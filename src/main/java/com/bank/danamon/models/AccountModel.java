@@ -49,7 +49,7 @@ public class AccountModel implements Serializable {
     private String account_type;
 
     @Column(name = "balance")
-    private Integer balance = 500000;
+    private Integer balance;
 
     @Column(name = "currency")
     private String currency = "IDR";

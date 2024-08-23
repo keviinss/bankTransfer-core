@@ -46,6 +46,14 @@ public class AccountService {
         return accountModel.get();
     }
 
+    public AccountModel findByAccountType(String account_type) {
+        Optional<AccountModel> accountModel = accountRepository.findByAccountType(account_type);
+        if (!accountModel.isPresent()) {
+            return null;
+        }
+        return accountModel.get();
+    }
+
     public AccountModel softDelete(AccountModel accountModel) {
         accountRepository.save(accountModel);
         return accountModel;
