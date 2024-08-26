@@ -53,6 +53,11 @@ public class TransferController {
 
             if (sender != null) {
                 if (receiver != null) {
+                    if (sender.getBalance() < payload.getAmount()) {
+
+                    } else {
+                        response.setMessages("balance_is_not_enough");
+                    }
 
                     TransferModel transfer = new TransferModel();
                     transfer.setSender_account_id(payload.getSender_account_id());
