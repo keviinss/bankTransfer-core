@@ -52,38 +52,91 @@ public class UserController {
 
             UserModel email = userService.findByEmail(payload.getEmail());
             UserModel phone = userService.findByPhone(payload.getPhone_number());
+            Random rand = new Random();
+            int randomNum = rand.nextInt(99999999);
 
             if (phone == null) {
                 if (email == null) {
+                    switch (payload.getAccount().getAccount_type()) {
+                        case "LITE" -> {
+                            UserModel user = new UserModel();
+                            user.setFirst_name(payload.getFirst_name());
+                            user.setLast_name(payload.getLast_name());
+                            user.setEmail(payload.getEmail());
+                            user.setPhone_number(payload.getPhone_number());
+                            user.setAddress(payload.getAddress());
+                            user.setDate_of_birth(payload.getDate_of_birth());
+                            user.setGender(payload.getGender());
 
-                    Random rand = new Random();
-                    int randomNum = rand.nextInt(99999999);
+                            httpstatus = HttpStatus.OK;
+                            response.setStatus_code(httpstatus.value());
+                            response.setData(userService.save(user));
 
-                    UserModel user = new UserModel();
-                    user.setFirst_name(payload.getFirst_name());
-                    user.setLast_name(payload.getLast_name());
-                    user.setEmail(payload.getEmail());
-                    user.setPhone_number(payload.getPhone_number());
-                    user.setAddress(payload.getAddress());
-                    user.setDate_of_birth(payload.getDate_of_birth());
-                    user.setGender(payload.getGender());
+                            String aacount_id = user.getUser_id();
+                            AccountModel account = new AccountModel();
+                            account.setUser_id(aacount_id);
+                            account.setAccount_type(payload.getAccount().getAccount_type());
+                            account.setAccount_number(randomNum);
+                            account.setBalance(200000);
+                            account.setTransfer_limit_count(5);
+                            accountService.save(account);
+                        }
+                        case "LITEPLUS" -> {
+                            UserModel user = new UserModel();
+                            user.setFirst_name(payload.getFirst_name());
+                            user.setLast_name(payload.getLast_name());
+                            user.setEmail(payload.getEmail());
+                            user.setPhone_number(payload.getPhone_number());
+                            user.setAddress(payload.getAddress());
+                            user.setDate_of_birth(payload.getDate_of_birth());
+                            user.setGender(payload.getGender());
 
-                    httpstatus = HttpStatus.OK;
-                    response.setStatus_code(httpstatus.value());
-                    response.setData(userService.save(user));
+                            httpstatus = HttpStatus.OK;
+                            response.setStatus_code(httpstatus.value());
+                            response.setData(userService.save(user));
 
-                    String aacount_id = user.getUser_id();
+                            String aacount_id = user.getUser_id();
+                            AccountModel account = new AccountModel();
+                            account.setUser_id(aacount_id);
+                            account.setAccount_type(payload.getAccount().getAccount_type());
+                            account.setAccount_number(randomNum);
+                            account.setBalance(500000);
+                            account.setTransfer_limit_count(10);
+                            accountService.save(account);
+                        }
+                        case "REGULER" -> {
+                            UserModel user = new UserModel();
+                            user.setFirst_name(payload.getFirst_name());
+                            user.setLast_name(payload.getLast_name());
+                            user.setEmail(payload.getEmail());
+                            user.setPhone_number(payload.getPhone_number());
+                            user.setAddress(payload.getAddress());
+                            user.setDate_of_birth(payload.getDate_of_birth());
+                            user.setGender(payload.getGender());
 
-                    AccountModel account = new AccountModel();
-                    account.setUser_id(aacount_id);
-                    account.setAccount_type(payload.getAccount().getAccount_type());
-                    account.setAccount_number(randomNum);
-                    accountService.save(account);
+                            httpstatus = HttpStatus.OK;
+                            response.setStatus_code(httpstatus.value());
+                            response.setData(userService.save(user));
+
+                            String aacount_id = user.getUser_id();
+                            AccountModel account = new AccountModel();
+                            account.setUser_id(aacount_id);
+                            account.setAccount_type(payload.getAccount().getAccount_type());
+                            account.setAccount_number(randomNum);
+                            account.setBalance(1000000);
+                            account.setTransfer_limit_count(0);
+                            accountService.save(account);
+                        }
+                        default -> {
+                            response.setMessages("Account type is not available");
+                        }
+                    }
+
                 } else {
-                    response.setMessages("email_address_already_exists");
+                    response.setMessages("Email address already exists");
                 }
             } else {
-                response.setMessages("phone_already_exists");
+                response.setMessages("Phone already exists");
             }
 
         }
@@ -124,13 +177,13 @@ public class UserController {
                         response.setStatus_code(httpstatus.value());
                         response.setData(userService.save(user));
                     } else {
-                        response.setMessages("email_address_already_exists");
+                        response.setMessages("Email address already exists");
                     }
                 } else {
-                    response.setMessages("phone_already_exists");
+                    response.setMessages("Phone already exists");
                 }
             } else {
-                response.setMessages("data_not_exist");
+                response.setMessages("Data not exist");
             }
         }
 
@@ -154,11 +207,11 @@ public class UserController {
                 response.setStatus_code(httpstatus.value());
                 response.setData(data);
             } else {
-                response.setMessages("data_not_exist");
+                response.setMessages("Data not exist");
             }
 
         } else {
-            response.setMessages("uid_is_required");
+            response.setMessages("Uid is required");
         }
 
         return ResponseEntity.status(httpstatus).body(response);
@@ -199,13 +252,13 @@ public class UserController {
                 httpstatus = HttpStatus.OK;
                 response.setStatus_code(httpstatus.value());
                 response.setData(userService.save(user));
-                response.setMessages("data_has_been_deleted");
+                response.setMessages("Data has been deleted");
             } else {
-                response.setMessages("data_not_exist");
+                response.setMessages("Data not exist");
             }
 
         } else {
-            response.setMessages("user_id_is_required");
+            response.setMessages("Uid is required");
         }
 
         return ResponseEntity.status(httpstatus).body(response);
