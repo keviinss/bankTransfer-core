@@ -53,29 +53,28 @@ public class TransferController {
 
             if (sender != null) {
                 if (receiver != null) {
-                    if (sender.getBalance() < payload.getAmount()) {
+                    if (sender.getBalance() > payload.getAmount()) {
+
+                        TransferModel transfer = new TransferModel();
+                        transfer.setSender_account_id(payload.getSender_account_id());
+                        transfer.setReceiver_account_id(payload.getReceiver_account_id());
+                        transfer.setAmount(payload.getAmount());
+
+                        Integer addBalance = transfer.getAmount() + receiver.getBalance();
+                        Integer reductionBalance = sender.getBalance() - transfer.getAmount();
+
+                        // accountService.save(receiver);
+                        sender.setBalance(reductionBalance);
+                        receiver.setBalance(addBalance);
+                        accountService.save(sender);
+
+                        httpstatus = HttpStatus.OK;
+                        response.setStatus_code(httpstatus.value());
+                        response.setData(transferService.save(transfer));
 
                     } else {
                         response.setMessages("balance_is_not_enough");
                     }
-
-                    TransferModel transfer = new TransferModel();
-                    transfer.setSender_account_id(payload.getSender_account_id());
-                    transfer.setReceiver_account_id(payload.getReceiver_account_id());
-                    transfer.setAmount(payload.getAmount());
-
-                    Integer addBalance = transfer.getAmount() + receiver.getBalance();
-                    Integer reductionBalance = sender.getBalance() - transfer.getAmount();
-
-                    // accountService.save(receiver);
-                    sender.setBalance(reductionBalance);
-                    receiver.setBalance(addBalance);
-                    accountService.save(sender);
-
-                    httpstatus = HttpStatus.OK;
-                    response.setStatus_code(httpstatus.value());
-                    response.setData(transferService.save(transfer));
-
                 } else {
                     response.setMessages("receiver_id_not_exist");
                 }
