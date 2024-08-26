@@ -51,6 +51,9 @@ public class AccountModel implements Serializable {
     @Column(name = "balance")
     private Integer balance;
 
+    @Column(name = "transfer_limit_count")
+    private Integer transfer_limit_count;
+
     @Column(name = "currency")
     private String currency = "IDR";
 
@@ -68,14 +71,15 @@ public class AccountModel implements Serializable {
     @Column(name = "is_deleted")
     private Boolean is_deleted = false;
 
-    public AccountModel(String account_id, String user_id,
-            Integer account_number, @NotEmpty(message = "account_type_is_required") String account_type, Integer balance, String currency,
-            Date created_at, Date updated_at, Boolean is_deleted) {
+    public AccountModel(String account_id, String user_id, Integer account_number,
+            @NotEmpty(message = "account_type_is_required") String account_type, Integer balance,
+            Integer transfer_limit_count, String currency, Date created_at, Date updated_at, Boolean is_deleted) {
         this.account_id = account_id;
         this.user_id = user_id;
         this.account_number = account_number;
         this.account_type = account_type;
         this.balance = balance;
+        this.transfer_limit_count = transfer_limit_count;
         this.currency = currency;
         this.created_at = created_at;
         this.updated_at = updated_at;

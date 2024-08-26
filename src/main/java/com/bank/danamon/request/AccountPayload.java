@@ -31,4 +31,5 @@ public class AccountPayload {
 
     private Integer balance;
 
+    private Integer transfer_limit_count;
 }
