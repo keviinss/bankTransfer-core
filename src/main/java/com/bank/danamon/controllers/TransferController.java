@@ -63,7 +63,6 @@ public class TransferController {
                         Integer addBalance = transfer.getAmount() + receiver.getBalance();
                         Integer reductionBalance = sender.getBalance() - transfer.getAmount();
 
-                        // accountService.save(receiver);
                         sender.setBalance(reductionBalance);
                         receiver.setBalance(addBalance);
                         accountService.save(sender);
