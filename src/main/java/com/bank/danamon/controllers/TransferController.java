@@ -54,7 +54,6 @@ public class TransferController {
             if (sender != null) {
                 if (receiver != null) {
                     if (sender.getBalance() > payload.getAmount()) {
-
                         TransferModel transfer = new TransferModel();
                         transfer.setSender_account_id(payload.getSender_account_id());
                         transfer.setReceiver_account_id(payload.getReceiver_account_id());
@@ -72,13 +71,13 @@ public class TransferController {
                         response.setData(transferService.save(transfer));
 
                     } else {
-                        response.setMessages("balance_is_not_enough");
+                        response.setMessages("Balance is not enough");
                     }
                 } else {
-                    response.setMessages("receiver_id_not_exist");
+                    response.setMessages("Receiver id not exists");
                 }
             } else {
-                response.setMessages("sender_id_not_exist");
+                response.setMessages("Sender id not exists");
             }
 
         }
