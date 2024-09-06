@@ -72,9 +72,9 @@ public class UserController {
                             response.setStatus_code(httpstatus.value());
                             response.setData(userService.save(user));
 
-                            String aacount_id = user.getUser_id();
+                            String account_id = user.getUser_id();
                             AccountModel account = new AccountModel();
-                            account.setUser_id(aacount_id);
+                            account.setUser_id(account_id);
                             account.setAccount_type(payload.getAccount().getAccount_type());
                             account.setAccount_number(randomNum);
                             account.setBalance(200000);
@@ -95,9 +95,9 @@ public class UserController {
                             response.setStatus_code(httpstatus.value());
                             response.setData(userService.save(user));
 
-                            String aacount_id = user.getUser_id();
+                            String account_id = user.getUser_id();
                             AccountModel account = new AccountModel();
-                            account.setUser_id(aacount_id);
+                            account.setUser_id(account_id);
                             account.setAccount_type(payload.getAccount().getAccount_type());
                             account.setAccount_number(randomNum);
                             account.setBalance(500000);
@@ -118,9 +118,9 @@ public class UserController {
                             response.setStatus_code(httpstatus.value());
                             response.setData(userService.save(user));
 
-                            String aacount_id = user.getUser_id();
+                            String account_id = user.getUser_id();
                             AccountModel account = new AccountModel();
-                            account.setUser_id(aacount_id);
+                            account.setUser_id(account_id);
                             account.setAccount_type(payload.getAccount().getAccount_type());
                             account.setAccount_number(randomNum);
                             account.setBalance(1000000);
