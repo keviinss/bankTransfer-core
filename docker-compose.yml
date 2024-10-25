@@ -1,0 +1,34 @@
+version: '3.8'
+services:
+  app:
+    image: bank-app:1.0.0 # Ganti dengan nama image aplikasi Spring Boot Anda
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/postgres?currentSchema=bank
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: root
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update  # Menentukan cara Hibernate mengelola skema database
+      SPRING_JPA_DATABASE_PLATFORM: org.hibernate.dialect.PostgreSQLDialect
+    depends_on:
+      - postgres
+    restart: always
+
+  postgres:
+    image: postgres:15-alpine  # Menggunakan PostgreSQL versi terbaru berbasis Alpine
+    # container_name: postgres
+    environment:
+      POSTGRES_DB: postgres # Nama database yang akan dibuat
+      POSTGRES_USER: postgres     # Username PostgreSQL
+      POSTGRES_PASSWORD: root  # Password PostgreSQL
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql   # Persistensi data database
+
+volumes:
+  postgres-data:  # Volume untuk menyimpan data PostgreSQL agar tetap ada setelah container dimatikan
