@@ -13,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,7 +21,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.bank.danamon.helpers.ResponseJson;
 import com.bank.danamon.models.AccountModel;
 import com.bank.danamon.models.UserModel;
-import com.bank.danamon.request.SearchPayload;
 import com.bank.danamon.request.UserPayload;
 import com.bank.danamon.services.AccountService;
 import com.bank.danamon.services.UserService;
@@ -218,16 +218,15 @@ public class UserController {
 
     }
 
-    @PostMapping("/user/getAll")
-    public ResponseEntity<Object> getAll(@RequestBody SearchPayload payload, HttpServletRequest httpRequest) {
-
+    @GetMapping("/user")
+    public ResponseEntity<ResponseJson<List<UserModel>>> getAll() {
         List<UserModel> data = userService.findAll();
-        ResponseJson<Object> response = new ResponseJson<>();
+
+        ResponseJson<List<UserModel>> response = new ResponseJson<>();
         response.setData(data);
         response.setStatus_code(HttpStatus.OK.value());
 
-        return ResponseEntity.status(HttpStatus.OK).body(response);
-
+        return ResponseEntity.ok(response);
     }
 
     @PostMapping("/user/delete")
