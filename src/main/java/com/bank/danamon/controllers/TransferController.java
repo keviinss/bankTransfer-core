@@ -1,9 +1,8 @@
 package com.bank.danamon.controllers;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,55 +33,57 @@ public class TransferController {
     AccountService accountService;
 
     @PostMapping("transfer/create")
-    public ResponseEntity<Object> create(@Valid @RequestBody TransferPayload payload, Errors errors,
-            HttpServletRequest httpRequest) {
+    public ResponseEntity<Object> create(@Valid @RequestBody TransferPayload payload, Errors errors) {
         ResponseJson<Object> response = new ResponseJson<>();
-        HttpStatus httpstatus = HttpStatus.BAD_REQUEST;
-        response.setStatus_code(httpstatus.value());
+        HttpStatus httpStatus = HttpStatus.BAD_REQUEST;
+        response.setStatus_code(httpStatus.value());
 
+        // Handle validation errors
         if (errors.hasErrors()) {
-            List<String> messages = new ArrayList<>();
-            for (ObjectError error : errors.getAllErrors()) {
-                messages.add(error.getDefaultMessage());
-            }
+            List<String> messages = errors.getAllErrors()
+                    .stream()
+                    .map(ObjectError::getDefaultMessage)
+                    .collect(Collectors.toList());
             response.setMessages(String.join(", ", messages));
-        } else {
-
-            AccountModel sender = accountService.findOne(payload.getSender_account_id());
-            AccountModel receiver = accountService.findOne(payload.getReceiver_account_id());
-
-            if (sender != null) {
-                if (receiver != null) {
-                    if (sender.getBalance() > payload.getAmount()) {
-                        TransferModel transfer = new TransferModel();
-                        transfer.setSender_account_id(payload.getSender_account_id());
-                        transfer.setReceiver_account_id(payload.getReceiver_account_id());
-                        transfer.setAmount(payload.getAmount());
-
-                        Integer addBalance = transfer.getAmount() + receiver.getBalance();
-                        Integer reductionBalance = sender.getBalance() - transfer.getAmount();
-
-                        sender.setBalance(reductionBalance);
-                        receiver.setBalance(addBalance);
-                        accountService.save(sender);
-
-                        httpstatus = HttpStatus.OK;
-                        response.setStatus_code(httpstatus.value());
-                        response.setData(transferService.save(transfer));
-
-                    } else {
-                        response.setMessages("Balance is not enough");
-                    }
-                } else {
-                    response.setMessages("Receiver id not exists");
-                }
-            } else {
-                response.setMessages("Sender id not exists");
-            }
-
+            return ResponseEntity.status(httpStatus).body(response);
         }
 
-        return ResponseEntity.status(httpstatus).body(response);
-    }
+        // Retrieve sender and receiver accounts
+        AccountModel sender = accountService.findOne(payload.getSender_account_id());
+        if (sender == null) {
+            response.setMessages("Sender id does not exist");
+            return ResponseEntity.status(httpStatus).body(response);
+        }
 
+        AccountModel receiver = accountService.findOne(payload.getReceiver_account_id());
+        if (receiver == null) {
+            response.setMessages("Receiver id does not exist");
+            return ResponseEntity.status(httpStatus).body(response);
+        }
+
+        // Check sender's balance
+        if (sender.getBalance() < payload.getAmount()) {
+            response.setMessages("Balance is not enough");
+            return ResponseEntity.status(httpStatus).body(response);
+        }
+
+        // Perform balance update and transfer
+        sender.setBalance(sender.getBalance() - payload.getAmount());
+        receiver.setBalance(receiver.getBalance() + payload.getAmount());
+        accountService.save(sender);
+        accountService.save(receiver);
+
+        // Create and save transfer record
+        TransferModel transfer = new TransferModel();
+        transfer.setSender_account_id(payload.getSender_account_id());
+        transfer.setReceiver_account_id(payload.getReceiver_account_id());
+        transfer.setAmount(payload.getAmount());
+        response.setData(transferService.save(transfer));
+
+        // Set success status
+        httpStatus = HttpStatus.OK;
+        response.setStatus_code(httpStatus.value());
+
+        return ResponseEntity.status(httpStatus).body(response);
+    }
 }
